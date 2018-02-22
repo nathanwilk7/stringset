@@ -8,8 +8,10 @@ type Stringset interface {
 	ToSlice () []string
 }
 
-func NewStringset () Stringset {
-	return EmptyInterfaceStringset{}
+func New () Stringset {
+	s := EmptyInterfaceStringset{}
+	s.stringMap = map[string]interface{}{}
+	return s
 }
 
 type EmptyInterfaceStringset struct {
@@ -35,7 +37,7 @@ func (ss EmptyInterfaceStringset) Size () int {
 }
 
 func (ss EmptyInterfaceStringset) ToSlice () []string {
-	slice := make([]string, len(ss.stringMap))
+	slice := []string{}
 	for s := range ss.stringMap {
 		slice = append(slice, s)
 	}
